@@ -1,0 +1,28 @@
+{
+  "source": "Lecture de l'historique Home Assistant Recorder",
+  "scope": "Synthèse publique : durées arrondies et libellés génériques uniquement ; les identifiants d'entités et les horodatages précis sont conservés localement.",
+  "cases": [
+    {
+      "incident": "A",
+      "trigger": "Redémarrage de cause indéterminée",
+      "unknown_minutes": 312,
+      "affected_fields": [
+        "Thermostat Z1",
+        "Mode actif Z1",
+        "Régime actif Z1"
+      ],
+      "displayed_state": "Inconnu"
+    },
+    {
+      "incident": "B",
+      "trigger": "Mise à jour du micrologiciel",
+      "unknown_minutes": 602,
+      "affected_fields": [
+        "Thermostat Z1",
+        "Mode actif Z1",
+        "Régime actif Z1"
+      ],
+      "displayed_state": "Inconnu"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PR #42 — carte d’entités Home Assistant</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fafafa; color: #212121; font: 15px Arial, sans-serif; }
+  main { width: 520px; margin: 0 auto; padding: 8px; }
+  .card { background: white; border: 1px solid #dedede; border-radius: 14px; padding-bottom: 8px; }
+  .card h2 { font-size: 25px; line-height: 30px; font-weight: 400; margin: 0; padding: 22px 18px 12px; }
+  .row { min-height: 52px; padding: 0 18px; display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) auto; gap: 16px; align-items: center; }
+  .row svg { width: 24px; height: 24px; color: #4478a7; justify-self: center; }
+  .row span { font-size: 14px; line-height: 1.4; }
+  .state { text-align: right; white-space: nowrap; }
+</style>
+<main>
+  <section class="card">
+    <h2>OpenFrisquetVisio</h2>
+    <div id="rows"></div>
+  </section>
+</main>
+<script>
+  // Reconstitution HTML d'après la carte d'entités fournie, limitée aux deux lignes
+  // concernées. Il ne s'agit pas d'une capture réelle de Home Assistant.
+  const after = new URLSearchParams(location.search).get('state') === 'after';
+  const rows = [['Mode actif Z1', after ? 'Auto' : 'Inconnu'],
+                ['Régime actif Z1', after ? 'Confort' : 'Inconnu']];
+  const eye = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 12C4 5 8 4 12 4s8 1 11 8c-3 7-7 8-11 8s-8-1-11-8z"/><circle cx="12" cy="12" r="5" fill="white"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>';
+  for (const [name, value] of rows) {
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = eye;
+    for (const [className, label] of [['name', name], ['state', value]]) {
+      const span = document.createElement('span');
+      span.className = className;
+      span.textContent = label;
+      row.append(span);
+    }
+    document.getElementById('rows').append(row);
+  }
+</script>
+</html>
